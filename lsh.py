@@ -1,3 +1,4 @@
+import numpy as np
 from minhash import MinHash
 from collections import defaultdict
 
@@ -11,7 +12,7 @@ class LSH(object):
         self.hashranges = [(i*self.r, (i+1)*self.r) for i in range(self.b)]
         self.keys = defaultdict(set)
 
-    def _H(self, hashvalues):
+    def _H(self, hashvalues: np.ndarray):
         return bytes(hashvalues.byteswap().data)
 
     def insert(self, key: str, minhash: MinHash):
